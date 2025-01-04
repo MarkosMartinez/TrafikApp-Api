@@ -20,7 +20,7 @@ public class CamaraController {
 	@GetMapping("/camaras")
 	public ResponseEntity<?> obtenerTodos() {
 
-		List<Camara> result = camaraRepositorio.findAll();
+		List<Camara> result = camaraRepositorio.findAllFiltered();
 		if(result.isEmpty()) {
 			return ResponseEntity.notFound().build();
 			
