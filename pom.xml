@@ -12,7 +12,7 @@
 	<artifactId>trafikapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>trafikapp</name>
-	<description>Demo project for Spring Boot</description>
+	<description>API del proyecto TrafikApp</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -53,6 +53,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+		<!--Para hashear las contraseñas-->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.17.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
