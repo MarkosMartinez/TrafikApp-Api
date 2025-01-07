@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,4 +58,25 @@ public class UsuarioController {
             return ResponseEntity.ok(result);
         }
     }
+
+    @PatchMapping("/modificarusuario")
+    public ResponseEntity<?> modificarUsuario(@RequestBody Usuario usuario) {
+        try {
+            Usuario usuarioModificado = usuarioServicio.modificarUsuario(usuario);
+            return ResponseEntity.ok(usuarioModificado);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error al modificar el usuario. Comprueba que los datos esten correctos: " + e);
+        }
+    }
+
+    @DeleteMapping("/eliminarusuario")
+    public ResponseEntity<?> borrarUsuario(@RequestParam String email) {
+        try {
+            usuarioServicio.borrarUsuario(email);
+            return ResponseEntity.ok("Usuario eliminado correctamente");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error al borrar el usuario: " + e);
+        }
+    }
+
 }

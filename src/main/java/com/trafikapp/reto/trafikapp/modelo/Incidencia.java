@@ -24,6 +24,7 @@ public class Incidencia {
     private String province;
     private String carRegistration;
     private String cause;
+    private String cityTown;
     private String startDate;
     private String road;
     private String pkStart;
