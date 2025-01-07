@@ -1,4 +1,4 @@
-package com.trafikapp.reto.trafikapp;
+package com.trafikapp.reto.trafikapp.service;
 
 import java.time.LocalDate;
 
@@ -8,6 +8,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.trafikapp.reto.trafikapp.SSLUtils;
 import com.trafikapp.reto.trafikapp.modelo.Incidencia;
 import com.trafikapp.reto.trafikapp.modelo.IncidenciaDTO;
 import com.trafikapp.reto.trafikapp.modelo.IncidenciaRepositorio;

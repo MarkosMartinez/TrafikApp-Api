@@ -1,4 +1,4 @@
-package com.trafikapp.reto.trafikapp;
+package com.trafikapp.reto.trafikapp.service;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;

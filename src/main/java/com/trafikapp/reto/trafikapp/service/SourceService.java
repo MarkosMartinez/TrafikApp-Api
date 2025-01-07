@@ -1,5 +1,6 @@
-package com.trafikapp.reto.trafikapp;
+package com.trafikapp.reto.trafikapp.service;
 
+import com.trafikapp.reto.trafikapp.SSLUtils;
 import com.trafikapp.reto.trafikapp.modelo.*;
 
 

@@ -1,4 +1,4 @@
-package com.trafikapp.reto.trafikapp;
+package com.trafikapp.reto.trafikapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -6,6 +6,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.trafikapp.reto.trafikapp.SSLUtils;
 import com.trafikapp.reto.trafikapp.modelo.Camara;
 import com.trafikapp.reto.trafikapp.modelo.CamaraDTO;
 import com.trafikapp.reto.trafikapp.modelo.CamaraRepositorio;

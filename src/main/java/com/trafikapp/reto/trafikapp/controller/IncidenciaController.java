@@ -13,10 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.trafikapp.reto.trafikapp.modelo.Incidencia;
 import com.trafikapp.reto.trafikapp.modelo.IncidenciaRepositorio;
 
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
+@Tag(name = "Controlador Incidencia", description = "Permite ver y gestionar las incidencias")
 public class IncidenciaController {
 
     private final IncidenciaRepositorio incidenciaRepositorio;
@@ -33,6 +37,11 @@ public class IncidenciaController {
         }
     }
 
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "OK"),
+        @ApiResponse(responseCode = "400", description = "Error, puede que algun dato no sea valido"),
+        @ApiResponse(responseCode = "500", description = "Error del servidor")
+    })
     @PostMapping("/crearincidencia")
     public ResponseEntity<?> crearIncidencia(@RequestBody Incidencia nuevaIncidencia) {
         try {
@@ -44,6 +53,11 @@ public class IncidenciaController {
         }
     }
 
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "OK"),
+        @ApiResponse(responseCode = "400", description = "Error, puede que algun dato no sea valido"),
+        @ApiResponse(responseCode = "500", description = "Error del servidor")
+    })
     @PatchMapping("/modificarincidencia")
     public ResponseEntity<?> modificarIncidencia(@RequestBody Incidencia incidenciaModificada) {
         try {
@@ -62,6 +76,11 @@ public class IncidenciaController {
         }
     }
 
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "OK"),
+        @ApiResponse(responseCode = "400", description = "Error, puede que el id de la incidencia no sea valida"),
+        @ApiResponse(responseCode = "500", description = "Error del servidor")
+    })
     @DeleteMapping("/eliminarincidencia")
     public ResponseEntity<?> eliminarIncidencia(@RequestBody Incidencia incidenciaAEliminar) {
         Incidencia incidencia = incidenciaRepositorio.findById(incidenciaAEliminar.getId());
