@@ -70,7 +70,7 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/eliminarusuario")
-    public ResponseEntity<?> borrarUsuario(@RequestParam String email) {
+    public ResponseEntity<?> borrarUsuario(@RequestBody String email) {
         try {
             usuarioServicio.borrarUsuario(email);
             return ResponseEntity.ok("Usuario eliminado correctamente");

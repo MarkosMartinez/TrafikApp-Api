@@ -32,5 +32,6 @@ public class Incidencia {
     private	String direction;
     private Double latitude;
     private Double longitude;
+    private Boolean creada = false;
 
 }

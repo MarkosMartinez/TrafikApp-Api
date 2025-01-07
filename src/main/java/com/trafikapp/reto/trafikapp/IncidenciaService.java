@@ -49,4 +49,9 @@ public class IncidenciaService {
     public void cargarDatosAlInicio() {
         cargarDatosDesdeApiExterna();
     }
+
+    public Incidencia addIncidencia(Incidencia incidencia) {
+        return incidenciaRepository.save(incidencia);
+    }
+    
 }
