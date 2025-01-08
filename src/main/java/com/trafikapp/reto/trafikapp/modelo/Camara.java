@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Data
 @NoArgsConstructor
@@ -26,6 +27,9 @@ public class Camara {
 	private String road;
 	private String kilometer;
 	private String address;
+
+	@ManyToOne
+    private Sources source;
 	
 
 }
