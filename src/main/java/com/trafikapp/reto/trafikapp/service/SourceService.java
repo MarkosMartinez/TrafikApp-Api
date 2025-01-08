@@ -7,6 +7,7 @@ import com.trafikapp.reto.trafikapp.modelo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -28,7 +29,7 @@ public class SourceService {
         for (int i = 0; i < sources.length; i++) {
             if (sources != null) {
                 Sources source = new Sources();
-                source.setId(Long.parseLong(sources[i].getId()));
+                source.setId(Integer.parseInt(sources[i].getId()));
                 source.setDescripcionEs(sources[i].getDescripcionEs());
                 source.setDescripcionEu(sources[i].getDescripcionEu());
 
@@ -38,6 +39,7 @@ public class SourceService {
     }
 
     @EventListener(ContextRefreshedEvent.class)
+    @Order(1)
     public void cargarDatosAlInicio() {
         cargarDatosDesdeApiExterna();
     }

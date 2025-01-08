@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -47,6 +48,7 @@ public class IncidenciaService {
     }
 
     @EventListener(ContextRefreshedEvent.class)
+    @Order(3)
     public void cargarDatosAlInicio() {
         cargarDatosDesdeApiExterna();
     }

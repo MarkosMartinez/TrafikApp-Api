@@ -3,11 +3,12 @@ package com.trafikapp.reto.trafikapp.modelo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Data
@@ -20,6 +21,7 @@ public class Incidencia {
 	
     private int id;
 	private int incidenceId;
+    @Column(name = "source_id")
 	private int sourceId;
 	private String incidenceType;
 	private String autonomousRegion;
@@ -37,6 +39,8 @@ public class Incidencia {
     private Boolean creada = false;
 
     @ManyToOne
+    @JoinColumn(name = "source_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Sources source;
+   
 
 }
