@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.annotation.Order;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -24,7 +25,7 @@ public class IncidenciaService {
 	private IncidenciaRepositorio incidenciaRepository;
 
     public void cargarDatosDesdeApiExterna() {
-        incidenciaRepository.deleteAll();
+        incidenciaRepository.vaciarIncidenciasNoCreadas();
         LocalDate today = LocalDate.now();
         String baseUrl = String.format("https://api.euskadi.eus/traffic/v1.0/incidences/byDate/%d/%02d/%02d", today.getYear(), today.getMonthValue(), today.getDayOfMonth());
         SSLUtils.disableSslVerification();
@@ -43,9 +44,15 @@ public class IncidenciaService {
                     }
                 }
             }
-            System.out.println("Incidencias guardadas");
+            System.out.println("Incidencias actualizadas");
         }
     }
+
+    @Scheduled(cron = "0 0 8 * * ?") // Todos los dias a las 8:00
+    //@Scheduled(cron = "0 * * * * ?") //Todos los minutos (para pruebas)
+	public void cargarDatosDiariamente() {
+		cargarDatosDesdeApiExterna();
+	}
 
     @EventListener(ContextRefreshedEvent.class)
     @Order(3)

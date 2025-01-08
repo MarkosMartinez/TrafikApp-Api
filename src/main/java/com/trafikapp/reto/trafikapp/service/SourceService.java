@@ -36,6 +36,7 @@ public class SourceService {
                 sourceRepositorio.save(source);
             }
         }
+        System.out.println("Sources actualizadas");
     }
 
     @EventListener(ContextRefreshedEvent.class)

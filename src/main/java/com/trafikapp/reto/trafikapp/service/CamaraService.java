@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.annotation.Order;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -24,7 +25,7 @@ public class CamaraService {
 	
 
 public void cargarDatosDesdeApiExterna() {
-	camaraRepository.deleteAll();
+	camaraRepository.vaciarTabla();
     String baseUrl = "https://api.euskadi.eus/traffic/v1.0/cameras";
     SSLUtils.disableSslVerification();
 
@@ -42,11 +43,17 @@ public void cargarDatosDesdeApiExterna() {
                 }
             }
         }
-        System.out.println("Camaras guardadas");
+        System.out.println("Camaras actualizadas");
     }
 }
 
-	
+
+	@Scheduled(cron = "0 0 8 * * ?") // Todos los dias a las 8:00
+    //@Scheduled(cron = "0 * * * * ?") //Todos los minutos (para pruebas)
+	public void cargarDatosDiariamente() {
+		cargarDatosDesdeApiExterna();
+	}
+
 	@EventListener(ContextRefreshedEvent.class)
     @Order(2)
     public void cargarDatosAlInicio() {
