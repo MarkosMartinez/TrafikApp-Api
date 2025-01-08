@@ -27,7 +27,7 @@ public class SourceController {
         @ApiResponse(responseCode = "200", description = "OK"),
         @ApiResponse(responseCode = "500", description = "Error del servidor")
     })
-	@GetMapping("/sources")
+	@GetMapping("/api/sources")
 	public ResponseEntity<?> obtenerTodos() {
 
 		List<Sources> result=sourceRepositorio.findAll();
