@@ -3,10 +3,12 @@ package com.trafikapp.reto.trafikapp.modelo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Data
 @NoArgsConstructor
@@ -33,5 +35,8 @@ public class Incidencia {
     private Double latitude;
     private Double longitude;
     private Boolean creada = false;
+
+    @ManyToOne
+    private Sources source;
 
 }
