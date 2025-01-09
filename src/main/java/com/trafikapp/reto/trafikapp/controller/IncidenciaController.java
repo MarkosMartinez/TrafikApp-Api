@@ -62,9 +62,9 @@ public class IncidenciaController {
     @PatchMapping("/api/modificarincidencia")
     public ResponseEntity<?> modificarIncidencia(@RequestBody Incidencia incidenciaModificada) {
         try {
-            Incidencia incidencia = incidenciaRepositorio.findById(incidenciaModificada.getId());
+            Incidencia incidencia = incidenciaRepositorio.findByIncidenceId(incidenciaModificada.getIncidenceId());
             if (incidencia == null) {
-                return ResponseEntity.badRequest().body("No se ha encontrado ninguna incidencia con el id: " + incidenciaModificada.getId());
+                return ResponseEntity.badRequest().body("No se ha encontrado ninguna incidencia con el id: " + incidenciaModificada.getIncidenceId());
             }
             incidencia.setIncidenceType(incidenciaModificada.getIncidenceType());
             incidencia.setCause(incidenciaModificada.getCause());
@@ -84,9 +84,9 @@ public class IncidenciaController {
     })
     @DeleteMapping("/api/eliminarincidencia")
     public ResponseEntity<?> eliminarIncidencia(@RequestBody Incidencia incidenciaAEliminar) {
-        Incidencia incidencia = incidenciaRepositorio.findById(incidenciaAEliminar.getId());
+        Incidencia incidencia = incidenciaRepositorio.findByIncidenceId(incidenciaAEliminar.getIncidenceId());
         if (incidencia == null) {
-            return ResponseEntity.badRequest().body("No se ha encontrado ninguna incidencia con el id: " + incidenciaAEliminar.getId());
+            return ResponseEntity.badRequest().body("No se ha encontrado ninguna incidencia con el id: " + incidenciaAEliminar.getIncidenceId());
         }
         incidenciaRepositorio.delete(incidencia);
         return ResponseEntity.ok("Incidencia eliminada");

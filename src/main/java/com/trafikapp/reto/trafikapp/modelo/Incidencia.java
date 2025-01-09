@@ -20,7 +20,8 @@ public class Incidencia {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	
     private int id;
-	private int incidenceId;
+	@Column(unique = true)
+    private int incidenceId;
     @Column(name = "source_id")
 	private int sourceId;
 	private String incidenceType;

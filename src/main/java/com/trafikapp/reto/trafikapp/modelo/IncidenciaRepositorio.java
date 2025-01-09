@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface IncidenciaRepositorio extends JpaRepository<Incidencia, Integer>{
     Incidencia findById(int id);
     List<Incidencia> findBySourceId(Integer source);
+    Incidencia findByIncidenceId(int incidenceId);
     
     @Modifying
     @Transactional
