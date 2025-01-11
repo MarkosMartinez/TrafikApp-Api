@@ -5,11 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 
 @Data
 @NoArgsConstructor
@@ -17,15 +16,14 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Incidencia {
     @Id 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	
-    private int id;
-	@Column(unique = true)
-    private int incidenceId;
+    @Column(unique = true)
+    private String incidenceId;
+
     @Column(name = "source_id")
-	private int sourceId;
-	private String incidenceType;
-	private String autonomousRegion;
+    private int sourceId;
+    
+    private String incidenceType;
+    private String autonomousRegion;
     private String province;
     private String carRegistration;
     private String cause;
@@ -34,7 +32,7 @@ public class Incidencia {
     private String road;
     private String pkStart;
     private String pkEnd;
-    private	String direction;
+    private String direction;
     private Double latitude;
     private Double longitude;
     private Boolean creada = false;
@@ -43,5 +41,11 @@ public class Incidencia {
     @JoinColumn(name = "source_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Sources source;
    
-
+    @PrePersist
+    public void prePersist() {
+        if (this.incidenceId == null) {
+            String generatedId = System.currentTimeMillis() + "-creada";
+            this.incidenceId = generatedId;
+        }
+    }
 }
