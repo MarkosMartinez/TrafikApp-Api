@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
-public interface IncidenciaRepositorio extends JpaRepository<Incidencia, Integer>{
+public interface IncidenciaRepositorio extends JpaRepository<Incidencia, String>{
     List<Incidencia> findBySourceId(Integer source);
     Incidencia findByIncidenceId(String incidenceId);
     
