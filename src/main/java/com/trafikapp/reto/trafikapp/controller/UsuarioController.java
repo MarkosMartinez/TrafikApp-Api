@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.trafikapp.reto.trafikapp.modelo.Usuario;
@@ -33,10 +32,10 @@ public class UsuarioController {
         @ApiResponse(responseCode = "500", description = "Error del servidor")
     })
     @PostMapping("/api/login")
-    public ResponseEntity<?> login(@RequestParam String email, @RequestParam String contrasena) {
-        Usuario usuario = usuarioRepositorio.findByEmail(email);
-        if (usuario != null && usuario.getContrasena().equals(DigestUtils.sha256Hex(contrasena))) {
-            return ResponseEntity.ok(usuario);
+    public ResponseEntity<?> login(@RequestBody Usuario usuario) {
+        Usuario usuarioExistente = usuarioRepositorio.findByEmail(usuario.getEmail());
+        if (usuarioExistente != null && usuarioExistente.getContrasena().equals(DigestUtils.sha256Hex(usuario.getContrasena()))) {
+            return ResponseEntity.ok(usuarioExistente);
         } else {
             return ResponseEntity.badRequest().body("Credenciales incorrectas");
         }
@@ -115,11 +114,11 @@ public class UsuarioController {
         @ApiResponse(responseCode = "500", description = "Error del servidor")
     })
     @DeleteMapping("/api/eliminarusuario")
-    public ResponseEntity<?> borrarUsuario(@RequestParam String email) {
+    public ResponseEntity<?> borrarUsuario(@RequestBody Usuario usuario) {
         try {
-            Usuario usuario = usuarioRepositorio.findByEmail(email);
-            if (usuario != null) {
-                usuarioRepositorio.delete(usuario);
+            Usuario usuarioExistente = usuarioRepositorio.findByEmail(usuario.getEmail());
+            if (usuarioExistente != null) {
+                usuarioRepositorio.delete(usuarioExistente);
                 return ResponseEntity.ok().build();
             } else {
                 return ResponseEntity.status(400).body("Usuario no encontrado");
