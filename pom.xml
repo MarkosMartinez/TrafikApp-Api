@@ -76,6 +76,12 @@
 			<version>4.0.1</version>
 			<scope>provided</scope>
 		</dependency>
+		<!--Para compilar-->
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.13.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
