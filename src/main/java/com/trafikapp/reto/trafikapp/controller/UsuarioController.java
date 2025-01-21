@@ -34,7 +34,7 @@ public class UsuarioController {
 		@ApiResponse(responseCode = "500", description = "Error del servidor")
 	})
 	@GetMapping("/api/usuarios/byEmail/{email}")
-	public ResponseEntity<?> obtenerPorSource(@PathVariable String email) {
+	public ResponseEntity<?> obtenerPorEmail(@PathVariable String email) {
 
 		Usuario result = usuarioRepositorio.findByEmail(email);
 		if(result == null) {
