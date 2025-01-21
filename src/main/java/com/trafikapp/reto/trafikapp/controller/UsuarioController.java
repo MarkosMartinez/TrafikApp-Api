@@ -6,10 +6,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.trafikapp.reto.trafikapp.modelo.Camara;
 import com.trafikapp.reto.trafikapp.modelo.Usuario;
 import com.trafikapp.reto.trafikapp.modelo.UsuarioRepositorio;
 
@@ -25,6 +27,23 @@ import org.apache.commons.codec.digest.DigestUtils;
 public class UsuarioController {
 
     private final UsuarioRepositorio usuarioRepositorio;
+
+    @ApiResponses(value = {
+		@ApiResponse(responseCode = "200", description = "OK"),
+		@ApiResponse(responseCode = "404", description = "Error, puede que el email no sea valido"),
+		@ApiResponse(responseCode = "500", description = "Error del servidor")
+	})
+	@GetMapping("/api/usuarios/byEmail/{email}")
+	public ResponseEntity<?> obtenerPorEmail(@PathVariable String email) {
+
+		Usuario result = usuarioRepositorio.findByEmail(email);
+		if(result == null) {
+			return ResponseEntity.notFound().build();
+			
+		} else {
+			return ResponseEntity.ok(result);
+		}
+	}
 
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "OK"),
