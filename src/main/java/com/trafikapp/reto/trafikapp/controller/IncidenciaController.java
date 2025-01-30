@@ -67,8 +67,12 @@ public class IncidenciaController {
                 return ResponseEntity.badRequest().body("No se ha encontrado ninguna incidencia con el id: " + incidenciaModificada.getIncidenceId());
             }
             incidencia.setIncidenceType(incidenciaModificada.getIncidenceType());
+            incidencia.setSourceId(incidenciaModificada.getSourceId());
             incidencia.setCause(incidenciaModificada.getCause());
             incidencia.setStartDate(incidenciaModificada.getStartDate());
+            incidencia.setProvince(incidenciaModificada.getProvince());
+            incidencia.setRoad(incidenciaModificada.getRoad());
+            incidencia.setCityTown(incidenciaModificada.getCityTown());
             incidencia.setLatitude(incidenciaModificada.getLatitude());
             incidencia.setLongitude(incidenciaModificada.getLongitude());
             return ResponseEntity.ok(incidenciaRepositorio.save(incidencia));
