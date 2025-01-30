@@ -27,7 +27,7 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>23</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -76,7 +76,7 @@
 			<version>4.0.1</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- Para convertir las cordenadas-->
+		<!--Para convertir las cordenadas-->
 		<dependency>
 			<groupId>org.locationtech.proj4j</groupId>
 			<artifactId>proj4j</artifactId>
@@ -93,11 +93,16 @@
 			<artifactId>maven-compiler-plugin</artifactId>
 			<version>3.13.0</version>
 		</dependency>
-		<!--PostgreSQL-->
+		<!--Para PostgreSQL-->
 		<dependency>
 		    <groupId>org.postgresql</groupId>
 		    <artifactId>postgresql</artifactId>
 		    <version>42.7.5</version>
+		</dependency>
+		<!--Para el chat-->
+		<dependency>
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-websocket</artifactId>
 		</dependency>
 	</dependencies>
 
