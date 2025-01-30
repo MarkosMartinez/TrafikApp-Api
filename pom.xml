@@ -93,6 +93,12 @@
 			<artifactId>maven-compiler-plugin</artifactId>
 			<version>3.13.0</version>
 		</dependency>
+		<!--PostgreSQL-->
+		<dependency>
+		    <groupId>org.postgresql</groupId>
+		    <artifactId>postgresql</artifactId>
+		    <version>42.7.5</version>
+		</dependency>
 	</dependencies>
 
 	<build>
